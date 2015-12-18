@@ -487,7 +487,10 @@ public class FloatingViewManager implements ScreenChangedListener, View.OnTouchL
      */
     public void removeAllViewToWindow() {
         mWindowManager.removeViewImmediate(mFullscreenObserverView);
-        mWindowManager.removeViewImmediate(mTrashView);
+        try {
+            mWindowManager.removeViewImmediate(mTrashView);
+        } catch (Exception e) {}
+
         // FloatingViewの削除
         final int size = mFloatingViewList.size();
         for (int i = 0; i < size; i++) {
